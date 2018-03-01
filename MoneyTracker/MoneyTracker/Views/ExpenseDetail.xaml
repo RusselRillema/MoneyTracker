@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MoneyTracker.Views.ExpenseDetail">
+    <StackLayout Padding="20">
+        <StackLayout Padding="20">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{Binding Expense.Location}" FontAttributes="Bold" />
+                <Label Text="{Binding Expense.Date}" FontAttributes="Bold" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{Binding Expense.TotalWithTip}" />
+                <Label Text="{Binding Expense.Total}" />
+            </StackLayout>
+            <StackLayout IsVisible="{Binding SplitBill}" Orientation="Horizontal">
+                <Label Text="{Binding Expense.SplitPortionWithTip}" />
+                <Label Text="{Binding Expense.SplitPortion}" />
+            </StackLayout>
+            <Image Source="{Binding DecodedImage}" />
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

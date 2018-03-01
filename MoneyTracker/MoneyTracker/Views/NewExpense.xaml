@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MoneyTracker.ValidationBehaviors"
+             x:Class="MoneyTracker.Views.NewExpense">
+    <StackLayout Padding="20">
+        <Button Text="Take Photo" TextColor="White" Command="{Binding TakePhotoCommand}" />
+        <Entry Placeholder="Location" Text="{Binding Location}" />
+        <Entry Placeholder="Category" Text="{Binding Category}" />
+        <DatePicker Format="dd-MM-yyyy" Date="{Binding Item.Date}" />
+        <Entry Keyboard="Numeric" Placeholder="Total" Text="{Binding Total}">
+            <Entry.Behaviors>
+                <local:DecimalValidationBehavior/>
+            </Entry.Behaviors>
+        </Entry>
+        <Entry Keyboard="Numeric" Placeholder="Total inc Tip" Text="{Binding TotalWithTip}">
+            <Entry.Behaviors>
+                <local:DecimalValidationBehavior/>
+            </Entry.Behaviors>
+        </Entry>
+        <Label Text="{Binding TotalTip}" />
+
+        <Switch IsToggled="{Binding SplitBill}" />
+        
+        <Entry IsVisible="{Binding SplitBill}" Keyboard="Numeric" Placeholder="My Portion" Text="{Binding SplitPortion}">
+            <Entry.Behaviors>
+                <local:DecimalValidationBehavior/>
+            </Entry.Behaviors>
+        </Entry>
+        <Entry IsVisible="{Binding SplitBill}" Keyboard="Numeric" Placeholder="My Portion inc Tip" Text="{Binding SplitPortionWithTip}">
+            <Entry.Behaviors>
+                <local:DecimalValidationBehavior/>
+            </Entry.Behaviors>
+        </Entry>
+        <Label IsVisible="{Binding SplitBill}" Text="{Binding SplitPortionTip}"/>
+        <Button Text="Save Entry" TextColor="White" Command="{Binding SaveExpense}" />
+        
+    </StackLayout>
+</ContentPage>

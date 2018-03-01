@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customControls="clr-namespace:MoneyTracker.CustomControls;assembly=MoneyTracker"
+             xmlns:converters="clr-namespace:MoneyTracker.Converters"
+             xmlns:behaviors="clr-namespace:MoneyTracker.Behaviors"
+             x:Class="MoneyTracker.Views.HomePage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:SelectedItemEventArgsToSelectedItemConverter x:Key="SelectedItemConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <AbsoluteLayout Grid.Row="1">
+        <StackLayout Padding="20">
+            <ListView ItemsSource="{Binding Expenses}" HasUnevenRows="True" >
+                <ListView.Behaviors>
+                        <behaviors:EventToCommandBehavior
+                    EventName="ItemSelected"
+                    Command="{Binding ItemSelectedCommand}"
+                    Converter="{StaticResource SelectedItemConverter}" />
+                </ListView.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ContentView>
+                                <StackLayout Padding="20">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Location}" FontAttributes="Bold" />
+                                        <Label Text="{Binding Date}" FontAttributes="Bold" />
+                                    </StackLayout>
+                                    <Label Text="{Binding Category}" FontSize="15" />
+                                    <Label Text="{Binding TotalWithTip}" FontSize="15" />
+                                </StackLayout>
+                            </ContentView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+        <customControls:ImageButton Source="IconFAB"
+                                        Command="{Binding GoNewExpenseCommand}"
+                                        AbsoluteLayout.LayoutFlags="PositionProportional"
+                                        AbsoluteLayout.LayoutBounds="1.0,1.0,-1,-1"
+                                        Margin="10" />
+
+    </AbsoluteLayout>
+
+</ContentPage>

@@ -1,0 +1,9 @@
+Categorise each item
+Easier entry of categories
+Fix Date Time picker
+Fix split bill auto fill total with tip
+Edit expense funcitonality
+Sync to google drive
+Easier Location (GPS?)
+Delete Expense
+Update expense list when going back to home
